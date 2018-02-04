@@ -1,0 +1,16 @@
+language: swift
+
+osx_image: xcode9.2
+
+xcode_project: Bootcamp.xcodeproj
+
+script:
+  - xcodebuild -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' test
+  - xcodebuild -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
+  slack: web-bootcamp:wyKIbU3rSC2tjbCh99Nnq1aE
