@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F15687F9E322B5DF5F019F3 /* Pods_Bootcamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CA9C9F17D86D56C6C18249 /* Pods_Bootcamp.framework */; };
 		BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9A20270DF500135559 /* AppDelegate.swift */; };
 		BFDE3C9D20270DF500135559 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9C20270DF500135559 /* ViewController.swift */; };
 		BFDE3CA020270DF500135559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3C9E20270DF500135559 /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.release.xcconfig"; sourceTree = "<group>"; };
+		B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDE3C9720270DF500135559 /* Bootcamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bootcamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3C9A20270DF500135559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFDE3C9C20270DF500135559 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		BFDE3CB620270DF500135559 /* BootcampUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BootcampUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3CBA20270DF500135559 /* BootcampUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootcampUITests.swift; sourceTree = "<group>"; };
 		BFDE3CBC20270DF500135559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4CA9C9F17D86D56C6C18249 /* Pods_Bootcamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bootcamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F15687F9E322B5DF5F019F3 /* Pods_Bootcamp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3593B1706D8ED52456A841D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */,
+				934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7F44BC14A74F03AC74802508 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4CA9C9F17D86D56C6C18249 /* Pods_Bootcamp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BFDE3C8E20270DF500135559 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +103,8 @@
 				BFDE3CAE20270DF500135559 /* BootcampTests */,
 				BFDE3CB920270DF500135559 /* BootcampUITests */,
 				BFDE3C9820270DF500135559 /* Products */,
+				3593B1706D8ED52456A841D3 /* Pods */,
+				7F44BC14A74F03AC74802508 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFDE3CBF20270DF500135559 /* Build configuration list for PBXNativeTarget "Bootcamp" */;
 			buildPhases = (
+				4B7DDD9662E31CA65555FBBE /* [CP] Check Pods Manifest.lock */,
 				BFDE3C9320270DF500135559 /* Sources */,
 				BFDE3C9420270DF500135559 /* Frameworks */,
 				BFDE3C9520270DF500135559 /* Resources */,
+				3240EEF593E49A70E0956A03 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +279,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3240EEF593E49A70E0956A03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KSCrash/KSCrash.framework",
+				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSCrash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B7DDD9662E31CA65555FBBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bootcamp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BFDE3C9320270DF500135559 /* Sources */ = {
@@ -424,6 +491,7 @@
 		};
 		BFDE3CC020270DF500135559 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +507,7 @@
 		};
 		BFDE3CC120270DF500135559 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

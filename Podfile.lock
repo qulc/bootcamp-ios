@@ -1,0 +1,42 @@
+PODS:
+  - KSCrash/Core (1.15.18):
+    - KSCrash/Reporting/Filters/Basic
+  - KSCrash/Recording (1.15.18):
+    - KSCrash/Recording/Tools (= 1.15.18)
+  - KSCrash/Recording/Tools (1.15.18)
+  - KSCrash/Reporting/Filters/Base (1.15.18):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.15.18):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - Sentry (3.12.4):
+    - Sentry/Core (= 3.12.4)
+    - Sentry/KSCrash (= 3.12.4)
+  - Sentry/Core (3.12.4)
+  - Sentry/KSCrash (3.12.4):
+    - KSCrash/Core (~> 1.15.12)
+
+DEPENDENCIES:
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.12.4`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KSCrash
+
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 3.12.4
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 3.12.4
+
+SPEC CHECKSUMS:
+  KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
+  Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
+
+PODFILE CHECKSUM: 533aff8000e9558c77f5232167bbd60bbf16d6a7
+
+COCOAPODS: 1.5.2

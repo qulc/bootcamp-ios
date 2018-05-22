@@ -1,12 +1,15 @@
 language: swift
 
-osx_image: xcode9.2
-
+osx_image: xcode9.3
 xcode_project: Bootcamp.xcodeproj
 
+cache:
+  - bundler
+  - cocoapods
+
 script:
-  - xcodebuild -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' test
-  - xcodebuild -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' test
+  - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test
+  - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
