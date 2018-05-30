@@ -1,0 +1,18 @@
+query Feed($first: Int) {
+    feeds(first: $first) {
+        edges {
+            node {
+                id
+                post
+                user {
+                    username
+                    profile {
+                        pictureUrl
+                    }
+                }
+                likes
+                comments
+            }
+        }
+    }
+}
