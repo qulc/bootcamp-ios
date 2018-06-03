@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF3047BE20C3D038003B664B /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BD20C3D038003B664B /* FeedTableViewController.swift */; };
+		BF3047C020C3DA05003B664B /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */; };
 		BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9A20270DF500135559 /* AppDelegate.swift */; };
 		BFDE3C9D20270DF500135559 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9C20270DF500135559 /* ViewController.swift */; };
 		BFDE3CA020270DF500135559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3C9E20270DF500135559 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.release.xcconfig"; sourceTree = "<group>"; };
 		B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.debug.xcconfig"; sourceTree = "<group>"; };
+		BF3047BD20C3D038003B664B /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		BFDE3C9720270DF500135559 /* Bootcamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bootcamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3C9A20270DF500135559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFDE3C9C20270DF500135559 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,9 +139,11 @@
 				BFDE3C9A20270DF500135559 /* AppDelegate.swift */,
 				BFDE3C9C20270DF500135559 /* ViewController.swift */,
 				BFDE3C9E20270DF500135559 /* Main.storyboard */,
+				BF3047BD20C3D038003B664B /* FeedTableViewController.swift */,
 				BFDE3CA120270DF500135559 /* Assets.xcassets */,
 				BFDE3CA320270DF500135559 /* LaunchScreen.storyboard */,
 				BFDE3CA620270DF500135559 /* Info.plist */,
+				BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */,
 			);
 			path = Bootcamp;
 			sourceTree = "<group>";
@@ -357,8 +363,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFDE3C9D20270DF500135559 /* ViewController.swift in Sources */,
+				BF3047BE20C3D038003B664B /* FeedTableViewController.swift in Sources */,
 				BFE7E29720BE6D56007A37C9 /* API.swift in Sources */,
 				BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */,
+				BF3047C020C3DA05003B664B /* FeedTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
