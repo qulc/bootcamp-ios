@@ -18,6 +18,9 @@ class FeedTableViewController: UITableViewController {
         super.viewDidLoad()
 
         apollo.fetch(query: FeedQuery(first: 10)) { (result, error) in
+            if error != nil {
+                return
+            }
             for feed in (result?.data?.feeds?.edges)! {
                 self.feeds.append((feed?.node?.post)!)
             }

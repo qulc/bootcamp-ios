@@ -1,0 +1,6 @@
+disabled_rules:
+  - line_length
+included:
+  - Bootcamp
+excluded:
+  - Bootcamp/API.swift

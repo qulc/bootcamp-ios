@@ -8,6 +8,7 @@ cache:
   - cocoapods
 
 script:
+  - swiftlint
   - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test
   - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test
 

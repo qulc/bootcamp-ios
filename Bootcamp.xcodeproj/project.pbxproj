@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		BF3047BE20C3D038003B664B /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BD20C3D038003B664B /* FeedTableViewController.swift */; };
 		BF3047C020C3DA05003B664B /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */; };
+		BF768D8D20C52729009209F5 /* Apollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF768D8C20C52729009209F5 /* Apollo.framework */; };
 		BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9A20270DF500135559 /* AppDelegate.swift */; };
-		BFDE3C9D20270DF500135559 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9C20270DF500135559 /* ViewController.swift */; };
 		BFDE3CA020270DF500135559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3C9E20270DF500135559 /* Main.storyboard */; };
 		BFDE3CA220270DF500135559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3CA120270DF500135559 /* Assets.xcassets */; };
 		BFDE3CA520270DF500135559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3CA320270DF500135559 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		BFE7E29620BE6D56007A37C9 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = BFE7E29320BE6D56007A37C9 /* schema.json */; };
 		BFE7E29720BE6D56007A37C9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE7E29420BE6D56007A37C9 /* API.swift */; };
 		BFE7E29820BE6D56007A37C9 /* feeds.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BFE7E29520BE6D56007A37C9 /* feeds.graphql */; };
-		BFE7E2A420BE73B5007A37C9 /* Pods_Bootcamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE7E2A320BE73B5007A37C9 /* Pods_Bootcamp.framework */; };
+		D1E3007143B56DC489A04040 /* Pods_Bootcamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bootcamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.release.xcconfig"; sourceTree = "<group>"; };
 		B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.debug.xcconfig"; sourceTree = "<group>"; };
 		BF3047BD20C3D038003B664B /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		BF768D8C20C52729009209F5 /* Apollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Apollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3C9720270DF500135559 /* Bootcamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bootcamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3C9A20270DF500135559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFDE3C9C20270DF500135559 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFDE3C9F20270DF500135559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFDE3CA120270DF500135559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFDE3CA420270DF500135559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +61,6 @@
 		BFE7E29320BE6D56007A37C9 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		BFE7E29420BE6D56007A37C9 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		BFE7E29520BE6D56007A37C9 /* feeds.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = feeds.graphql; sourceTree = "<group>"; };
-		BFE7E2A320BE73B5007A37C9 /* Pods_Bootcamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Bootcamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4CA9C9F17D86D56C6C18249 /* Pods_Bootcamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bootcamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE7E2A420BE73B5007A37C9 /* Pods_Bootcamp.framework in Frameworks */,
+				BF768D8D20C52729009209F5 /* Apollo.framework in Frameworks */,
+				D1E3007143B56DC489A04040 /* Pods_Bootcamp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +102,8 @@
 		7F44BC14A74F03AC74802508 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BFE7E2A320BE73B5007A37C9 /* Pods_Bootcamp.framework */,
-				C4CA9C9F17D86D56C6C18249 /* Pods_Bootcamp.framework */,
+				BF768D8C20C52729009209F5 /* Apollo.framework */,
+				90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,7 +137,6 @@
 				BFE7E29520BE6D56007A37C9 /* feeds.graphql */,
 				BFE7E29320BE6D56007A37C9 /* schema.json */,
 				BFDE3C9A20270DF500135559 /* AppDelegate.swift */,
-				BFDE3C9C20270DF500135559 /* ViewController.swift */,
 				BFDE3C9E20270DF500135559 /* Main.storyboard */,
 				BF3047BD20C3D038003B664B /* FeedTableViewController.swift */,
 				BFDE3CA120270DF500135559 /* Assets.xcassets */,
@@ -353,7 +352,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema schema.json --output API.swift";
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$PODS_ROOT/Apollo\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\n    echo \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/scripts/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema schema.json --output API.swift";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -362,7 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFDE3C9D20270DF500135559 /* ViewController.swift in Sources */,
 				BF3047BE20C3D038003B664B /* FeedTableViewController.swift in Sources */,
 				BFE7E29720BE6D56007A37C9 /* API.swift in Sources */,
 				BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */,
