@@ -3,6 +3,7 @@ query Feed($first: Int) {
         edges {
             node {
                 id
+                date
                 post
                 user {
                     username

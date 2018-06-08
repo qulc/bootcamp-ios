@@ -4,7 +4,7 @@ import Apollo
 
 public final class FeedQuery: GraphQLQuery {
   public static let operationString =
-    "query Feed($first: Int) {\n  feeds(first: $first) {\n    __typename\n    edges {\n      __typename\n      node {\n        __typename\n        id\n        post\n        user {\n          __typename\n          username\n          profile {\n            __typename\n            pictureUrl\n          }\n        }\n        likes\n        comments\n      }\n    }\n  }\n}"
+    "query Feed($first: Int) {\n  feeds(first: $first) {\n    __typename\n    edges {\n      __typename\n      node {\n        __typename\n        id\n        date\n        post\n        user {\n          __typename\n          username\n          profile {\n            __typename\n            pictureUrl\n          }\n        }\n        likes\n        comments\n      }\n    }\n  }\n}"
 
   public var first: Int?
 
@@ -121,6 +121,7 @@ public final class FeedQuery: GraphQLQuery {
           public static let selections: [GraphQLSelection] = [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("date", type: .nonNull(.scalar(String.self))),
             GraphQLField("post", type: .nonNull(.scalar(String.self))),
             GraphQLField("user", type: .nonNull(.object(User.selections))),
             GraphQLField("likes", type: .nonNull(.scalar(Int.self))),
@@ -133,8 +134,8 @@ public final class FeedQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(id: GraphQLID, post: String, user: User, likes: Int, comments: Int) {
-            self.init(snapshot: ["__typename": "FeedObject", "id": id, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
+          public init(id: GraphQLID, date: String, post: String, user: User, likes: Int, comments: Int) {
+            self.init(snapshot: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
           }
 
           public var __typename: String {
@@ -153,6 +154,15 @@ public final class FeedQuery: GraphQLQuery {
             }
             set {
               snapshot.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var date: String {
+            get {
+              return snapshot["date"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "date")
             }
           }
 

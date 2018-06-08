@@ -12,6 +12,9 @@ PODS:
   - KSCrash/Reporting/Filters/Basic (1.15.18):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - Sentry (3.12.4):
     - Sentry/Core (= 3.12.4)
     - Sentry/KSCrash (= 3.12.4)
@@ -21,12 +24,14 @@ PODS:
 
 DEPENDENCIES:
   - Apollo (~> 0.8)
+  - SDWebImage (~> 4.0)
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.12.4`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Apollo
     - KSCrash
+    - SDWebImage
 
 EXTERNAL SOURCES:
   Sentry:
@@ -41,8 +46,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Apollo: 66e0f52289551545adb7ecdd994e713fdbae26eb
   KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
 
-PODFILE CHECKSUM: d6290feeb61ef7bb094667cc717a603684bd9c12
+PODFILE CHECKSUM: b0116f668d16d12e1796fc9d87944aef78db743e
 
 COCOAPODS: 1.5.3

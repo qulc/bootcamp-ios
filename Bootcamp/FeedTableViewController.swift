@@ -8,22 +8,18 @@
 
 import UIKit
 import Apollo
+import SDWebImage
 
 class FeedTableViewController: UITableViewController {
 
-    var feeds = [String]()
+    var feeds = [FeedQuery.Data.Feed.Edge?]()
     let apollo = ApolloClient(url: URL(string: "https://bootcamp.qulc.me/graphql")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         apollo.fetch(query: FeedQuery(first: 10)) { (result, error) in
-            if error != nil {
-                return
-            }
-            for feed in (result?.data?.feeds?.edges)! {
-                self.feeds.append((feed?.node?.post)!)
-            }
+            self.feeds = (result?.data?.feeds?.edges)!
             self.tableView.reloadData()
         }
     }
@@ -48,7 +44,14 @@ class FeedTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell else {
             fatalError("The dequeued cell is not an instance of FeedTableViewCell.")
         }
-        cell.textLabel?.text = self.feeds[indexPath.row]
+        let feed = self.feeds[indexPath.row]
+
+        if let avatar_url = feed?.node?.user.profile?.pictureUrl {
+            cell.avatar.sd_setImage(with: URL(string: avatar_url))
+        }
+        cell.post.text = feed?.node?.post
+        cell.name.text = feed?.node?.user.username
+        cell.date.text = feed?.node?.date
         return cell
     }
 
