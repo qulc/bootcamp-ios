@@ -12,20 +12,20 @@ PODS:
   - KSCrash/Reporting/Filters/Basic (1.15.18):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
-  - Sentry (3.12.4):
-    - Sentry/Core (= 3.12.4)
-    - Sentry/KSCrash (= 3.12.4)
-  - Sentry/Core (3.12.4)
-  - Sentry/KSCrash (3.12.4):
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
+  - Sentry (3.13.0):
+    - Sentry/Core (= 3.13.0)
+    - Sentry/KSCrash (= 3.13.0)
+  - Sentry/Core (3.13.0)
+  - Sentry/KSCrash (3.13.0):
     - KSCrash/Core (~> 1.15.12)
 
 DEPENDENCIES:
   - Apollo (~> 0.8)
   - SDWebImage (~> 4.0)
-  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `3.12.4`)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -36,19 +36,18 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 3.12.4
 
 CHECKOUT OPTIONS:
   Sentry:
+    :commit: 9dff437516d6fbddfe530e3f00ed5970ad84893b
     :git: https://github.com/getsentry/sentry-cocoa.git
-    :tag: 3.12.4
 
 SPEC CHECKSUMS:
   Apollo: 66e0f52289551545adb7ecdd994e713fdbae26eb
   KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+  Sentry: 871762436b55524a7f109bbcdfe90d3f0812d895
 
-PODFILE CHECKSUM: b0116f668d16d12e1796fc9d87944aef78db743e
+PODFILE CHECKSUM: f939c68f009aa82d6d4d3a8a5e02065c9ce53238
 
 COCOAPODS: 1.5.3

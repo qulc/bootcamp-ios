@@ -18,7 +18,7 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apollo.fetch(query: FeedQuery(first: 10)) { (result, error) in
+        apollo.fetch(query: FeedQuery(first: 10)) { (result, _) in
             self.feeds = (result?.data?.feeds?.edges)!
             self.tableView.reloadData()
         }
@@ -46,8 +46,8 @@ class FeedTableViewController: UITableViewController {
         }
         let feed = self.feeds[indexPath.row]
 
-        if let avatar_url = feed?.node?.user.profile?.pictureUrl {
-            cell.avatar.sd_setImage(with: URL(string: avatar_url))
+        if let avatarUrl = feed?.node?.user.profile?.pictureUrl {
+            cell.avatar.sd_setImage(with: URL(string: avatarUrl))
         }
         cell.post.text = feed?.node?.post
         cell.name.text = feed?.node?.user.username
