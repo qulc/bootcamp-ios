@@ -236,7 +236,6 @@
 				TargetAttributes = {
 					BFDE3C9620270DF500135559 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
 					};
 					BFDE3CAA20270DF500135559 = {
 						CreatedOnToolsVersion = 9.2;
@@ -540,7 +539,8 @@
 			baseConfigurationReference = B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -549,6 +549,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lichun.bootcamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9ad39aca-fbf8-4632-9c52-fed399577db3";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Wildcard (93F6B9Q7ZC.*)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -559,7 +561,8 @@
 			baseConfigurationReference = 934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -568,6 +571,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lichun.bootcamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9ad39aca-fbf8-4632-9c52-fed399577db3";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Wildcard (93F6B9Q7ZC.*)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
