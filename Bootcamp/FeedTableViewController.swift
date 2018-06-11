@@ -46,6 +46,8 @@ class FeedTableViewController: UITableViewController {
         }
         let feed = self.feeds[indexPath.row]
 
+        cell.avatar.layer.cornerRadius = cell.avatar.frame.width / 2
+        cell.avatar.layer.masksToBounds = true
         if let avatarUrl = feed?.node?.user.profile?.pictureUrl {
             cell.avatar.sd_setImage(with: URL(string: avatarUrl))
         }
