@@ -7,14 +7,23 @@
 //
 
 import UIKit
+import Apollo
+
+let apollo: ApolloClient = {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = ["Authorization": ""]
+
+    let url = URL(string: "https://bootcamp.qulc.me/graphql")!
+    return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+}()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        apollo.cacheKeyForObject = { $0["id"] }
         return true
     }
 

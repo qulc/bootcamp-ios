@@ -108,6 +108,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF21126D20D3BEB300203D58 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				BFE7E29420BE6D56007A37C9 /* API.swift */,
+				BFE7E29520BE6D56007A37C9 /* feeds.graphql */,
+				BFE7E29320BE6D56007A37C9 /* schema.json */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
 		BFDE3C8E20270DF500135559 = {
 			isa = PBXGroup;
 			children = (
@@ -133,9 +143,7 @@
 		BFDE3C9920270DF500135559 /* Bootcamp */ = {
 			isa = PBXGroup;
 			children = (
-				BFE7E29420BE6D56007A37C9 /* API.swift */,
-				BFE7E29520BE6D56007A37C9 /* feeds.graphql */,
-				BFE7E29320BE6D56007A37C9 /* schema.json */,
+				BF21126D20D3BEB300203D58 /* GraphQL */,
 				BFDE3C9A20270DF500135559 /* AppDelegate.swift */,
 				BFDE3C9E20270DF500135559 /* Main.storyboard */,
 				BF3047BD20C3D038003B664B /* FeedTableViewController.swift */,
@@ -353,7 +361,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$PODS_ROOT/Apollo\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\n    echo \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/scripts/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema schema.json --output API.swift";
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$PODS_ROOT/Apollo\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\n    echo \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/scripts/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema GraphQL/schema.json --output GraphQL/API.swift";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -539,8 +547,8 @@
 			baseConfigurationReference = B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -549,8 +557,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lichun.bootcamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ad39aca-fbf8-4632-9c52-fed399577db3";
-				PROVISIONING_PROFILE_SPECIFIER = "XC Wildcard (93F6B9Q7ZC.*)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -561,8 +569,8 @@
 			baseConfigurationReference = 934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -571,8 +579,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lichun.bootcamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ad39aca-fbf8-4632-9c52-fed399577db3";
-				PROVISIONING_PROFILE_SPECIFIER = "XC Wildcard (93F6B9Q7ZC.*)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

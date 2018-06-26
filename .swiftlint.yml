@@ -3,4 +3,4 @@ disabled_rules:
 included:
   - Bootcamp
 excluded:
-  - Bootcamp/API.swift
+  - Bootcamp/GraphQL/API.swift

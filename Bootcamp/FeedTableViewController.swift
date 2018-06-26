@@ -11,16 +11,21 @@ import Apollo
 import SDWebImage
 
 class FeedTableViewController: UITableViewController {
-
-    var feeds = [FeedQuery.Data.Feed.Edge?]()
-    let apollo = ApolloClient(url: URL(string: "https://bootcamp.qulc.me/graphql")!)
+    var watcher: GraphQLQueryWatcher<FeedQuery>?
+    var feeds = [FeedQuery.Data.Feed.Edge?]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apollo.fetch(query: FeedQuery(first: 10)) { (result, _) in
+        watcher = apollo.watch(query: FeedQuery(first: 10)) { (result, error) in
+            if error != nil {
+                fatalError("The query error: \(error!.localizedDescription)")
+            }
             self.feeds = (result?.data?.feeds?.edges)!
-            self.tableView.reloadData()
         }
     }
 
@@ -44,16 +49,7 @@ class FeedTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell else {
             fatalError("The dequeued cell is not an instance of FeedTableViewCell.")
         }
-        let feed = self.feeds[indexPath.row]
-
-        cell.avatar.layer.cornerRadius = cell.avatar.frame.width / 2
-        cell.avatar.layer.masksToBounds = true
-        if let avatarUrl = feed?.node?.user.profile?.pictureUrl {
-            cell.avatar.sd_setImage(with: URL(string: avatarUrl))
-        }
-        cell.post.text = feed?.node?.post
-        cell.name.text = feed?.node?.user.username
-        cell.date.text = feed?.node?.date
+        cell.configure(with: self.feeds[indexPath.row]!)
         return cell
     }
 
@@ -73,7 +69,7 @@ class FeedTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -101,5 +97,13 @@ class FeedTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func post(_ sender: UIBarButtonItem) {
+        let inputPost = UIAlertController(title: "Enter post", message: nil, preferredStyle: .alert)
+        inputPost.addTextField()
+        inputPost.addAction(UIAlertAction(title: "Post", style: .default) { (action) in
+            apollo.perform(mutation: PostMutation(post: inputPost.textFields![0].text!))
+        })
+        self.present(inputPost, animated: true)
+    }
 
 }

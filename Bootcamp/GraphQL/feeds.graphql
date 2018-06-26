@@ -1,0 +1,39 @@
+fragment Feed on FeedObject {
+    id
+    date
+    post
+    user {
+        username
+        profile {
+            pictureUrl
+        }
+    }
+    likes
+    comments
+}
+
+query Feed($first: Int) {
+    feeds(first: $first) {
+        edges {
+            node {
+                ...Feed
+            }
+        }
+    }
+}
+
+mutation Post($post: String!) {
+    createFeed(feed: {post: $post}) {
+        feed {
+            ...Feed
+        }
+    }
+}
+
+mutation Like($id: ID!) {
+    likeFeed(id: $id) {
+        feed {
+            ...Feed
+        }
+    }
+}
