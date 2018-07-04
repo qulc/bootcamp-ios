@@ -4,18 +4,19 @@ osx_image: xcode9.3
 xcode_project: Bootcamp.xcodeproj
 
 cache:
-  - bundler
-  - cocoapods
+  bundler: true
+  directories:
+    - Carthage
 
 install:
-  - pod update
-  - pod install
+  - brew update && brew upgrade carthage
+  - carthage update --no-use-binaries --cache-builds --platform iOS
   - gem install fir-cli
 
 script:
   - swiftlint
-  - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
-  - xcodebuild -workspace Bootcamp.xcworkspace -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
+  - xcodebuild -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
+  - xcodebuild -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

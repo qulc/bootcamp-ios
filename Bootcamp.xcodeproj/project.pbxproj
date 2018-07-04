@@ -172,7 +172,7 @@
 				BFDE3C9320270DF500135559 /* Sources */,
 				BFDE3C9420270DF500135559 /* Frameworks */,
 				BFDE3C9520270DF500135559 /* Resources */,
-				BFC076C320EC964B00170A7F /* ShellScript */,
+				BFC076C320EC964B00170A7F /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -294,7 +294,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BFC076C320EC964B00170A7F /* ShellScript */ = {
+		BFC076C320EC964B00170A7F /* Copy Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,6 +303,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Apollo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 			);
+			name = "Copy Carthage Frameworks";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Apollo.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework",

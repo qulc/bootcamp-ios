@@ -44,5 +44,6 @@ playground.xcworkspace
 # AppCode
 .idea/
 
-# CocoaPods
+# Package
 Pods/
+Carthage
