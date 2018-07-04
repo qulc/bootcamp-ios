@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		BF3047BE20C3D038003B664B /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BD20C3D038003B664B /* FeedTableViewController.swift */; };
 		BF3047C020C3DA05003B664B /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */; };
-		BF768D8D20C52729009209F5 /* Apollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF768D8C20C52729009209F5 /* Apollo.framework */; };
+		BFC076C720EC97B500170A7F /* Apollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC076C520EC97B500170A7F /* Apollo.framework */; };
+		BFC076C820EC97B500170A7F /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC076C620EC97B500170A7F /* SDWebImage.framework */; };
 		BFDE3C9B20270DF500135559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE3C9A20270DF500135559 /* AppDelegate.swift */; };
 		BFDE3CA020270DF500135559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3C9E20270DF500135559 /* Main.storyboard */; };
 		BFDE3CA220270DF500135559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFDE3CA120270DF500135559 /* Assets.xcassets */; };
@@ -19,7 +20,6 @@
 		BFE7E29620BE6D56007A37C9 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = BFE7E29320BE6D56007A37C9 /* schema.json */; };
 		BFE7E29720BE6D56007A37C9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE7E29420BE6D56007A37C9 /* API.swift */; };
 		BFE7E29820BE6D56007A37C9 /* feeds.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BFE7E29520BE6D56007A37C9 /* feeds.graphql */; };
-		D1E3007143B56DC489A04040 /* Pods_Bootcamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,12 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bootcamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.release.xcconfig"; sourceTree = "<group>"; };
-		B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp.debug.xcconfig"; sourceTree = "<group>"; };
 		BF3047BD20C3D038003B664B /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		BF3047BF20C3DA05003B664B /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
-		BF768D8C20C52729009209F5 /* Apollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Apollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC076C520EC97B500170A7F /* Apollo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Apollo.framework; path = Carthage/Build/iOS/Apollo.framework; sourceTree = "<group>"; };
+		BFC076C620EC97B500170A7F /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		BFDE3C9720270DF500135559 /* Bootcamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bootcamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDE3C9A20270DF500135559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFDE3C9F20270DF500135559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,8 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF768D8D20C52729009209F5 /* Apollo.framework in Frameworks */,
-				D1E3007143B56DC489A04040 /* Pods_Bootcamp.framework in Frameworks */,
+				BFC076C720EC97B500170A7F /* Apollo.framework in Frameworks */,
+				BFC076C820EC97B500170A7F /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,24 +88,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3593B1706D8ED52456A841D3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */,
-				934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		7F44BC14A74F03AC74802508 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BF768D8C20C52729009209F5 /* Apollo.framework */,
-				90D447686BE8FB06C2C7ED92 /* Pods_Bootcamp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		BF21126D20D3BEB300203D58 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +98,15 @@
 			path = GraphQL;
 			sourceTree = "<group>";
 		};
+		BFC076C420EC97B400170A7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFC076C520EC97B500170A7F /* Apollo.framework */,
+				BFC076C620EC97B500170A7F /* SDWebImage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BFDE3C8E20270DF500135559 = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +114,7 @@
 				BFDE3CAE20270DF500135559 /* BootcampTests */,
 				BFDE3CB920270DF500135559 /* BootcampUITests */,
 				BFDE3C9820270DF500135559 /* Products */,
-				3593B1706D8ED52456A841D3 /* Pods */,
-				7F44BC14A74F03AC74802508 /* Frameworks */,
+				BFC076C420EC97B400170A7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,12 +168,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFDE3CBF20270DF500135559 /* Build configuration list for PBXNativeTarget "Bootcamp" */;
 			buildPhases = (
-				4B7DDD9662E31CA65555FBBE /* [CP] Check Pods Manifest.lock */,
 				BFE7E29020BE6A97007A37C9 /* Generate Apollo GraphQL API */,
 				BFDE3C9320270DF500135559 /* Sources */,
 				BFDE3C9420270DF500135559 /* Frameworks */,
 				BFDE3C9520270DF500135559 /* Resources */,
-				3240EEF593E49A70E0956A03 /* [CP] Embed Pods Frameworks */,
+				BFC076C320EC964B00170A7F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -307,47 +294,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3240EEF593E49A70E0956A03 /* [CP] Embed Pods Frameworks */ = {
+		BFC076C320EC964B00170A7F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
-				"${BUILT_PRODUCTS_DIR}/KSCrash/KSCrash.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Apollo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 			);
-			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSCrash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Apollo.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bootcamp/Pods-Bootcamp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B7DDD9662E31CA65555FBBE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Bootcamp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		BFE7E29020BE6A97007A37C9 /* Generate Apollo GraphQL API */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -361,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$PODS_ROOT/Apollo\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\n    echo \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/scripts/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema GraphQL/schema.json --output GraphQL/API.swift";
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"${SRCROOT}/Carthage/Build/iOS/Apollo.framework\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\n    echo \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema GraphQL/schema.json --output GraphQL/API.swift";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -544,12 +506,15 @@
 		};
 		BFDE3CC020270DF500135559 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CE81F737966931C54AE169 /* Pods-Bootcamp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,12 +531,15 @@
 		};
 		BFDE3CC120270DF500135559 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 934A9D4C0B22BB0AF8D89C10 /* Pods-Bootcamp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 93F6B9Q7ZC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bootcamp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
