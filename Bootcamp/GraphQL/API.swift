@@ -3,10 +3,10 @@
 import Apollo
 
 public final class FeedQuery: GraphQLQuery {
-  public static let operationString =
+  public let operationDefinition =
     "query Feed($first: Int) {\n  feeds(first: $first) {\n    __typename\n    edges {\n      __typename\n      node {\n        __typename\n        ...Feed\n      }\n    }\n  }\n}"
 
-  public static var requestString: String { return operationString.appending(Feed.fragmentString) }
+  public var queryDocument: String { return operationDefinition.appending(Feed.fragmentDefinition) }
 
   public var first: Int?
 
@@ -25,22 +25,22 @@ public final class FeedQuery: GraphQLQuery {
       GraphQLField("feeds", arguments: ["first": GraphQLVariable("first")], type: .object(Feed.selections)),
     ]
 
-    public var snapshot: Snapshot
+    public private(set) var resultMap: ResultMap
 
-    public init(snapshot: Snapshot) {
-      self.snapshot = snapshot
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
     }
 
     public init(feeds: Feed? = nil) {
-      self.init(snapshot: ["__typename": "Query", "feeds": feeds.flatMap { (value: Feed) -> Snapshot in value.snapshot }])
+      self.init(unsafeResultMap: ["__typename": "Query", "feeds": feeds.flatMap { (value: Feed) -> ResultMap in value.resultMap }])
     }
 
     public var feeds: Feed? {
       get {
-        return (snapshot["feeds"] as? Snapshot).flatMap { Feed(snapshot: $0) }
+        return (resultMap["feeds"] as? ResultMap).flatMap { Feed(unsafeResultMap: $0) }
       }
       set {
-        snapshot.updateValue(newValue?.snapshot, forKey: "feeds")
+        resultMap.updateValue(newValue?.resultMap, forKey: "feeds")
       }
     }
 
@@ -52,31 +52,31 @@ public final class FeedQuery: GraphQLQuery {
         GraphQLField("edges", type: .nonNull(.list(.object(Edge.selections)))),
       ]
 
-      public var snapshot: Snapshot
+      public private(set) var resultMap: ResultMap
 
-      public init(snapshot: Snapshot) {
-        self.snapshot = snapshot
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
       }
 
       public init(edges: [Edge?]) {
-        self.init(snapshot: ["__typename": "FeedObjectConnection", "edges": edges.map { (value: Edge?) -> Snapshot? in value.flatMap { (value: Edge) -> Snapshot in value.snapshot } }])
+        self.init(unsafeResultMap: ["__typename": "FeedObjectConnection", "edges": edges.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
         get {
-          return snapshot["__typename"]! as! String
+          return resultMap["__typename"]! as! String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "__typename")
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
       }
 
       public var edges: [Edge?] {
         get {
-          return (snapshot["edges"] as! [Snapshot?]).map { (value: Snapshot?) -> Edge? in value.flatMap { (value: Snapshot) -> Edge in Edge(snapshot: value) } }
+          return (resultMap["edges"] as! [ResultMap?]).map { (value: ResultMap?) -> Edge? in value.flatMap { (value: ResultMap) -> Edge in Edge(unsafeResultMap: value) } }
         }
         set {
-          snapshot.updateValue(newValue.map { (value: Edge?) -> Snapshot? in value.flatMap { (value: Edge) -> Snapshot in value.snapshot } }, forKey: "edges")
+          resultMap.updateValue(newValue.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } }, forKey: "edges")
         }
       }
 
@@ -88,32 +88,32 @@ public final class FeedQuery: GraphQLQuery {
           GraphQLField("node", type: .object(Node.selections)),
         ]
 
-        public var snapshot: Snapshot
+        public private(set) var resultMap: ResultMap
 
-        public init(snapshot: Snapshot) {
-          self.snapshot = snapshot
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
         }
 
         public init(node: Node? = nil) {
-          self.init(snapshot: ["__typename": "FeedObjectEdge", "node": node.flatMap { (value: Node) -> Snapshot in value.snapshot }])
+          self.init(unsafeResultMap: ["__typename": "FeedObjectEdge", "node": node.flatMap { (value: Node) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
           get {
-            return snapshot["__typename"]! as! String
+            return resultMap["__typename"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "__typename")
+            resultMap.updateValue(newValue, forKey: "__typename")
           }
         }
 
         /// The item at the end of the edge
         public var node: Node? {
           get {
-            return (snapshot["node"] as? Snapshot).flatMap { Node(snapshot: $0) }
+            return (resultMap["node"] as? ResultMap).flatMap { Node(unsafeResultMap: $0) }
           }
           set {
-            snapshot.updateValue(newValue?.snapshot, forKey: "node")
+            resultMap.updateValue(newValue?.resultMap, forKey: "node")
           }
         }
 
@@ -131,98 +131,102 @@ public final class FeedQuery: GraphQLQuery {
             GraphQLField("comments", type: .nonNull(.scalar(Int.self))),
           ]
 
-          public var snapshot: Snapshot
+          public private(set) var resultMap: ResultMap
 
-          public init(snapshot: Snapshot) {
-            self.snapshot = snapshot
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
           }
 
           public init(id: GraphQLID, date: String, post: String, user: User, likes: Int, comments: Int) {
-            self.init(snapshot: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
+            self.init(unsafeResultMap: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.resultMap, "likes": likes, "comments": comments])
           }
 
           public var __typename: String {
             get {
-              return snapshot["__typename"]! as! String
+              return resultMap["__typename"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "__typename")
+              resultMap.updateValue(newValue, forKey: "__typename")
             }
           }
 
           /// The ID of the object.
           public var id: GraphQLID {
             get {
-              return snapshot["id"]! as! GraphQLID
+              return resultMap["id"]! as! GraphQLID
             }
             set {
-              snapshot.updateValue(newValue, forKey: "id")
+              resultMap.updateValue(newValue, forKey: "id")
             }
           }
 
           public var date: String {
             get {
-              return snapshot["date"]! as! String
+              return resultMap["date"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "date")
+              resultMap.updateValue(newValue, forKey: "date")
             }
           }
 
           public var post: String {
             get {
-              return snapshot["post"]! as! String
+              return resultMap["post"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "post")
+              resultMap.updateValue(newValue, forKey: "post")
             }
           }
 
           public var user: User {
             get {
-              return User(snapshot: snapshot["user"]! as! Snapshot)
+              return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
             }
             set {
-              snapshot.updateValue(newValue.snapshot, forKey: "user")
+              resultMap.updateValue(newValue.resultMap, forKey: "user")
             }
           }
 
           public var likes: Int {
             get {
-              return snapshot["likes"]! as! Int
+              return resultMap["likes"]! as! Int
             }
             set {
-              snapshot.updateValue(newValue, forKey: "likes")
+              resultMap.updateValue(newValue, forKey: "likes")
             }
           }
 
           public var comments: Int {
             get {
-              return snapshot["comments"]! as! Int
+              return resultMap["comments"]! as! Int
             }
             set {
-              snapshot.updateValue(newValue, forKey: "comments")
+              resultMap.updateValue(newValue, forKey: "comments")
             }
           }
 
           public var fragments: Fragments {
             get {
-              return Fragments(snapshot: snapshot)
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
-              snapshot += newValue.snapshot
+              resultMap += newValue.resultMap
             }
           }
 
           public struct Fragments {
-            public var snapshot: Snapshot
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
 
             public var feed: Feed {
               get {
-                return Feed(snapshot: snapshot)
+                return Feed(unsafeResultMap: resultMap)
               }
               set {
-                snapshot += newValue.snapshot
+                resultMap += newValue.resultMap
               }
             }
           }
@@ -236,41 +240,41 @@ public final class FeedQuery: GraphQLQuery {
               GraphQLField("profile", type: .object(Profile.selections)),
             ]
 
-            public var snapshot: Snapshot
+            public private(set) var resultMap: ResultMap
 
-            public init(snapshot: Snapshot) {
-              self.snapshot = snapshot
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
             }
 
             public init(username: String, profile: Profile? = nil) {
-              self.init(snapshot: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> Snapshot in value.snapshot }])
+              self.init(unsafeResultMap: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
               get {
-                return snapshot["__typename"]! as! String
+                return resultMap["__typename"]! as! String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "__typename")
+                resultMap.updateValue(newValue, forKey: "__typename")
               }
             }
 
             /// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
             public var username: String {
               get {
-                return snapshot["username"]! as! String
+                return resultMap["username"]! as! String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "username")
+                resultMap.updateValue(newValue, forKey: "username")
               }
             }
 
             public var profile: Profile? {
               get {
-                return (snapshot["profile"] as? Snapshot).flatMap { Profile(snapshot: $0) }
+                return (resultMap["profile"] as? ResultMap).flatMap { Profile(unsafeResultMap: $0) }
               }
               set {
-                snapshot.updateValue(newValue?.snapshot, forKey: "profile")
+                resultMap.updateValue(newValue?.resultMap, forKey: "profile")
               }
             }
 
@@ -282,31 +286,31 @@ public final class FeedQuery: GraphQLQuery {
                 GraphQLField("pictureUrl", type: .scalar(String.self)),
               ]
 
-              public var snapshot: Snapshot
+              public private(set) var resultMap: ResultMap
 
-              public init(snapshot: Snapshot) {
-                self.snapshot = snapshot
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
               }
 
               public init(pictureUrl: String? = nil) {
-                self.init(snapshot: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
+                self.init(unsafeResultMap: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
               }
 
               public var __typename: String {
                 get {
-                  return snapshot["__typename"]! as! String
+                  return resultMap["__typename"]! as! String
                 }
                 set {
-                  snapshot.updateValue(newValue, forKey: "__typename")
+                  resultMap.updateValue(newValue, forKey: "__typename")
                 }
               }
 
               public var pictureUrl: String? {
                 get {
-                  return snapshot["pictureUrl"] as? String
+                  return resultMap["pictureUrl"] as? String
                 }
                 set {
-                  snapshot.updateValue(newValue, forKey: "pictureUrl")
+                  resultMap.updateValue(newValue, forKey: "pictureUrl")
                 }
               }
             }
@@ -318,10 +322,10 @@ public final class FeedQuery: GraphQLQuery {
 }
 
 public final class PostMutation: GraphQLMutation {
-  public static let operationString =
+  public let operationDefinition =
     "mutation Post($post: String!) {\n  createFeed(feed: {post: $post}) {\n    __typename\n    feed {\n      __typename\n      ...Feed\n    }\n  }\n}"
 
-  public static var requestString: String { return operationString.appending(Feed.fragmentString) }
+  public var queryDocument: String { return operationDefinition.appending(Feed.fragmentDefinition) }
 
   public var post: String
 
@@ -340,22 +344,22 @@ public final class PostMutation: GraphQLMutation {
       GraphQLField("createFeed", arguments: ["feed": ["post": GraphQLVariable("post")]], type: .object(CreateFeed.selections)),
     ]
 
-    public var snapshot: Snapshot
+    public private(set) var resultMap: ResultMap
 
-    public init(snapshot: Snapshot) {
-      self.snapshot = snapshot
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
     }
 
     public init(createFeed: CreateFeed? = nil) {
-      self.init(snapshot: ["__typename": "Mutations", "createFeed": createFeed.flatMap { (value: CreateFeed) -> Snapshot in value.snapshot }])
+      self.init(unsafeResultMap: ["__typename": "Mutations", "createFeed": createFeed.flatMap { (value: CreateFeed) -> ResultMap in value.resultMap }])
     }
 
     public var createFeed: CreateFeed? {
       get {
-        return (snapshot["createFeed"] as? Snapshot).flatMap { CreateFeed(snapshot: $0) }
+        return (resultMap["createFeed"] as? ResultMap).flatMap { CreateFeed(unsafeResultMap: $0) }
       }
       set {
-        snapshot.updateValue(newValue?.snapshot, forKey: "createFeed")
+        resultMap.updateValue(newValue?.resultMap, forKey: "createFeed")
       }
     }
 
@@ -367,31 +371,31 @@ public final class PostMutation: GraphQLMutation {
         GraphQLField("feed", type: .object(Feed.selections)),
       ]
 
-      public var snapshot: Snapshot
+      public private(set) var resultMap: ResultMap
 
-      public init(snapshot: Snapshot) {
-        self.snapshot = snapshot
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
       }
 
       public init(feed: Feed? = nil) {
-        self.init(snapshot: ["__typename": "CreateFeed", "feed": feed.flatMap { (value: Feed) -> Snapshot in value.snapshot }])
+        self.init(unsafeResultMap: ["__typename": "CreateFeed", "feed": feed.flatMap { (value: Feed) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
         get {
-          return snapshot["__typename"]! as! String
+          return resultMap["__typename"]! as! String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "__typename")
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
       }
 
       public var feed: Feed? {
         get {
-          return (snapshot["feed"] as? Snapshot).flatMap { Feed(snapshot: $0) }
+          return (resultMap["feed"] as? ResultMap).flatMap { Feed(unsafeResultMap: $0) }
         }
         set {
-          snapshot.updateValue(newValue?.snapshot, forKey: "feed")
+          resultMap.updateValue(newValue?.resultMap, forKey: "feed")
         }
       }
 
@@ -409,98 +413,102 @@ public final class PostMutation: GraphQLMutation {
           GraphQLField("comments", type: .nonNull(.scalar(Int.self))),
         ]
 
-        public var snapshot: Snapshot
+        public private(set) var resultMap: ResultMap
 
-        public init(snapshot: Snapshot) {
-          self.snapshot = snapshot
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
         }
 
         public init(id: GraphQLID, date: String, post: String, user: User, likes: Int, comments: Int) {
-          self.init(snapshot: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
+          self.init(unsafeResultMap: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.resultMap, "likes": likes, "comments": comments])
         }
 
         public var __typename: String {
           get {
-            return snapshot["__typename"]! as! String
+            return resultMap["__typename"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "__typename")
+            resultMap.updateValue(newValue, forKey: "__typename")
           }
         }
 
         /// The ID of the object.
         public var id: GraphQLID {
           get {
-            return snapshot["id"]! as! GraphQLID
+            return resultMap["id"]! as! GraphQLID
           }
           set {
-            snapshot.updateValue(newValue, forKey: "id")
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
         public var date: String {
           get {
-            return snapshot["date"]! as! String
+            return resultMap["date"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "date")
+            resultMap.updateValue(newValue, forKey: "date")
           }
         }
 
         public var post: String {
           get {
-            return snapshot["post"]! as! String
+            return resultMap["post"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "post")
+            resultMap.updateValue(newValue, forKey: "post")
           }
         }
 
         public var user: User {
           get {
-            return User(snapshot: snapshot["user"]! as! Snapshot)
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
           }
           set {
-            snapshot.updateValue(newValue.snapshot, forKey: "user")
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
           }
         }
 
         public var likes: Int {
           get {
-            return snapshot["likes"]! as! Int
+            return resultMap["likes"]! as! Int
           }
           set {
-            snapshot.updateValue(newValue, forKey: "likes")
+            resultMap.updateValue(newValue, forKey: "likes")
           }
         }
 
         public var comments: Int {
           get {
-            return snapshot["comments"]! as! Int
+            return resultMap["comments"]! as! Int
           }
           set {
-            snapshot.updateValue(newValue, forKey: "comments")
+            resultMap.updateValue(newValue, forKey: "comments")
           }
         }
 
         public var fragments: Fragments {
           get {
-            return Fragments(snapshot: snapshot)
+            return Fragments(unsafeResultMap: resultMap)
           }
           set {
-            snapshot += newValue.snapshot
+            resultMap += newValue.resultMap
           }
         }
 
         public struct Fragments {
-          public var snapshot: Snapshot
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
 
           public var feed: Feed {
             get {
-              return Feed(snapshot: snapshot)
+              return Feed(unsafeResultMap: resultMap)
             }
             set {
-              snapshot += newValue.snapshot
+              resultMap += newValue.resultMap
             }
           }
         }
@@ -514,41 +522,41 @@ public final class PostMutation: GraphQLMutation {
             GraphQLField("profile", type: .object(Profile.selections)),
           ]
 
-          public var snapshot: Snapshot
+          public private(set) var resultMap: ResultMap
 
-          public init(snapshot: Snapshot) {
-            self.snapshot = snapshot
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
           }
 
           public init(username: String, profile: Profile? = nil) {
-            self.init(snapshot: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> Snapshot in value.snapshot }])
+            self.init(unsafeResultMap: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
             get {
-              return snapshot["__typename"]! as! String
+              return resultMap["__typename"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "__typename")
+              resultMap.updateValue(newValue, forKey: "__typename")
             }
           }
 
           /// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
           public var username: String {
             get {
-              return snapshot["username"]! as! String
+              return resultMap["username"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "username")
+              resultMap.updateValue(newValue, forKey: "username")
             }
           }
 
           public var profile: Profile? {
             get {
-              return (snapshot["profile"] as? Snapshot).flatMap { Profile(snapshot: $0) }
+              return (resultMap["profile"] as? ResultMap).flatMap { Profile(unsafeResultMap: $0) }
             }
             set {
-              snapshot.updateValue(newValue?.snapshot, forKey: "profile")
+              resultMap.updateValue(newValue?.resultMap, forKey: "profile")
             }
           }
 
@@ -560,31 +568,31 @@ public final class PostMutation: GraphQLMutation {
               GraphQLField("pictureUrl", type: .scalar(String.self)),
             ]
 
-            public var snapshot: Snapshot
+            public private(set) var resultMap: ResultMap
 
-            public init(snapshot: Snapshot) {
-              self.snapshot = snapshot
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
             }
 
             public init(pictureUrl: String? = nil) {
-              self.init(snapshot: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
+              self.init(unsafeResultMap: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
             }
 
             public var __typename: String {
               get {
-                return snapshot["__typename"]! as! String
+                return resultMap["__typename"]! as! String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "__typename")
+                resultMap.updateValue(newValue, forKey: "__typename")
               }
             }
 
             public var pictureUrl: String? {
               get {
-                return snapshot["pictureUrl"] as? String
+                return resultMap["pictureUrl"] as? String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "pictureUrl")
+                resultMap.updateValue(newValue, forKey: "pictureUrl")
               }
             }
           }
@@ -595,10 +603,10 @@ public final class PostMutation: GraphQLMutation {
 }
 
 public final class LikeMutation: GraphQLMutation {
-  public static let operationString =
+  public let operationDefinition =
     "mutation Like($id: ID!) {\n  likeFeed(id: $id) {\n    __typename\n    feed {\n      __typename\n      ...Feed\n    }\n  }\n}"
 
-  public static var requestString: String { return operationString.appending(Feed.fragmentString) }
+  public var queryDocument: String { return operationDefinition.appending(Feed.fragmentDefinition) }
 
   public var id: GraphQLID
 
@@ -617,22 +625,22 @@ public final class LikeMutation: GraphQLMutation {
       GraphQLField("likeFeed", arguments: ["id": GraphQLVariable("id")], type: .object(LikeFeed.selections)),
     ]
 
-    public var snapshot: Snapshot
+    public private(set) var resultMap: ResultMap
 
-    public init(snapshot: Snapshot) {
-      self.snapshot = snapshot
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
     }
 
     public init(likeFeed: LikeFeed? = nil) {
-      self.init(snapshot: ["__typename": "Mutations", "likeFeed": likeFeed.flatMap { (value: LikeFeed) -> Snapshot in value.snapshot }])
+      self.init(unsafeResultMap: ["__typename": "Mutations", "likeFeed": likeFeed.flatMap { (value: LikeFeed) -> ResultMap in value.resultMap }])
     }
 
     public var likeFeed: LikeFeed? {
       get {
-        return (snapshot["likeFeed"] as? Snapshot).flatMap { LikeFeed(snapshot: $0) }
+        return (resultMap["likeFeed"] as? ResultMap).flatMap { LikeFeed(unsafeResultMap: $0) }
       }
       set {
-        snapshot.updateValue(newValue?.snapshot, forKey: "likeFeed")
+        resultMap.updateValue(newValue?.resultMap, forKey: "likeFeed")
       }
     }
 
@@ -644,31 +652,31 @@ public final class LikeMutation: GraphQLMutation {
         GraphQLField("feed", type: .object(Feed.selections)),
       ]
 
-      public var snapshot: Snapshot
+      public private(set) var resultMap: ResultMap
 
-      public init(snapshot: Snapshot) {
-        self.snapshot = snapshot
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
       }
 
       public init(feed: Feed? = nil) {
-        self.init(snapshot: ["__typename": "LikeFeed", "feed": feed.flatMap { (value: Feed) -> Snapshot in value.snapshot }])
+        self.init(unsafeResultMap: ["__typename": "LikeFeed", "feed": feed.flatMap { (value: Feed) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
         get {
-          return snapshot["__typename"]! as! String
+          return resultMap["__typename"]! as! String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "__typename")
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
       }
 
       public var feed: Feed? {
         get {
-          return (snapshot["feed"] as? Snapshot).flatMap { Feed(snapshot: $0) }
+          return (resultMap["feed"] as? ResultMap).flatMap { Feed(unsafeResultMap: $0) }
         }
         set {
-          snapshot.updateValue(newValue?.snapshot, forKey: "feed")
+          resultMap.updateValue(newValue?.resultMap, forKey: "feed")
         }
       }
 
@@ -686,98 +694,102 @@ public final class LikeMutation: GraphQLMutation {
           GraphQLField("comments", type: .nonNull(.scalar(Int.self))),
         ]
 
-        public var snapshot: Snapshot
+        public private(set) var resultMap: ResultMap
 
-        public init(snapshot: Snapshot) {
-          self.snapshot = snapshot
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
         }
 
         public init(id: GraphQLID, date: String, post: String, user: User, likes: Int, comments: Int) {
-          self.init(snapshot: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
+          self.init(unsafeResultMap: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.resultMap, "likes": likes, "comments": comments])
         }
 
         public var __typename: String {
           get {
-            return snapshot["__typename"]! as! String
+            return resultMap["__typename"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "__typename")
+            resultMap.updateValue(newValue, forKey: "__typename")
           }
         }
 
         /// The ID of the object.
         public var id: GraphQLID {
           get {
-            return snapshot["id"]! as! GraphQLID
+            return resultMap["id"]! as! GraphQLID
           }
           set {
-            snapshot.updateValue(newValue, forKey: "id")
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
         public var date: String {
           get {
-            return snapshot["date"]! as! String
+            return resultMap["date"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "date")
+            resultMap.updateValue(newValue, forKey: "date")
           }
         }
 
         public var post: String {
           get {
-            return snapshot["post"]! as! String
+            return resultMap["post"]! as! String
           }
           set {
-            snapshot.updateValue(newValue, forKey: "post")
+            resultMap.updateValue(newValue, forKey: "post")
           }
         }
 
         public var user: User {
           get {
-            return User(snapshot: snapshot["user"]! as! Snapshot)
+            return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
           }
           set {
-            snapshot.updateValue(newValue.snapshot, forKey: "user")
+            resultMap.updateValue(newValue.resultMap, forKey: "user")
           }
         }
 
         public var likes: Int {
           get {
-            return snapshot["likes"]! as! Int
+            return resultMap["likes"]! as! Int
           }
           set {
-            snapshot.updateValue(newValue, forKey: "likes")
+            resultMap.updateValue(newValue, forKey: "likes")
           }
         }
 
         public var comments: Int {
           get {
-            return snapshot["comments"]! as! Int
+            return resultMap["comments"]! as! Int
           }
           set {
-            snapshot.updateValue(newValue, forKey: "comments")
+            resultMap.updateValue(newValue, forKey: "comments")
           }
         }
 
         public var fragments: Fragments {
           get {
-            return Fragments(snapshot: snapshot)
+            return Fragments(unsafeResultMap: resultMap)
           }
           set {
-            snapshot += newValue.snapshot
+            resultMap += newValue.resultMap
           }
         }
 
         public struct Fragments {
-          public var snapshot: Snapshot
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
 
           public var feed: Feed {
             get {
-              return Feed(snapshot: snapshot)
+              return Feed(unsafeResultMap: resultMap)
             }
             set {
-              snapshot += newValue.snapshot
+              resultMap += newValue.resultMap
             }
           }
         }
@@ -791,41 +803,41 @@ public final class LikeMutation: GraphQLMutation {
             GraphQLField("profile", type: .object(Profile.selections)),
           ]
 
-          public var snapshot: Snapshot
+          public private(set) var resultMap: ResultMap
 
-          public init(snapshot: Snapshot) {
-            self.snapshot = snapshot
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
           }
 
           public init(username: String, profile: Profile? = nil) {
-            self.init(snapshot: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> Snapshot in value.snapshot }])
+            self.init(unsafeResultMap: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
             get {
-              return snapshot["__typename"]! as! String
+              return resultMap["__typename"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "__typename")
+              resultMap.updateValue(newValue, forKey: "__typename")
             }
           }
 
           /// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
           public var username: String {
             get {
-              return snapshot["username"]! as! String
+              return resultMap["username"]! as! String
             }
             set {
-              snapshot.updateValue(newValue, forKey: "username")
+              resultMap.updateValue(newValue, forKey: "username")
             }
           }
 
           public var profile: Profile? {
             get {
-              return (snapshot["profile"] as? Snapshot).flatMap { Profile(snapshot: $0) }
+              return (resultMap["profile"] as? ResultMap).flatMap { Profile(unsafeResultMap: $0) }
             }
             set {
-              snapshot.updateValue(newValue?.snapshot, forKey: "profile")
+              resultMap.updateValue(newValue?.resultMap, forKey: "profile")
             }
           }
 
@@ -837,31 +849,31 @@ public final class LikeMutation: GraphQLMutation {
               GraphQLField("pictureUrl", type: .scalar(String.self)),
             ]
 
-            public var snapshot: Snapshot
+            public private(set) var resultMap: ResultMap
 
-            public init(snapshot: Snapshot) {
-              self.snapshot = snapshot
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
             }
 
             public init(pictureUrl: String? = nil) {
-              self.init(snapshot: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
+              self.init(unsafeResultMap: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
             }
 
             public var __typename: String {
               get {
-                return snapshot["__typename"]! as! String
+                return resultMap["__typename"]! as! String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "__typename")
+                resultMap.updateValue(newValue, forKey: "__typename")
               }
             }
 
             public var pictureUrl: String? {
               get {
-                return snapshot["pictureUrl"] as? String
+                return resultMap["pictureUrl"] as? String
               }
               set {
-                snapshot.updateValue(newValue, forKey: "pictureUrl")
+                resultMap.updateValue(newValue, forKey: "pictureUrl")
               }
             }
           }
@@ -872,7 +884,7 @@ public final class LikeMutation: GraphQLMutation {
 }
 
 public struct Feed: GraphQLFragment {
-  public static let fragmentString =
+  public static let fragmentDefinition =
     "fragment Feed on FeedObject {\n  __typename\n  id\n  date\n  post\n  user {\n    __typename\n    username\n    profile {\n      __typename\n      pictureUrl\n    }\n  }\n  likes\n  comments\n}"
 
   public static let possibleTypes = ["FeedObject"]
@@ -887,77 +899,77 @@ public struct Feed: GraphQLFragment {
     GraphQLField("comments", type: .nonNull(.scalar(Int.self))),
   ]
 
-  public var snapshot: Snapshot
+  public private(set) var resultMap: ResultMap
 
-  public init(snapshot: Snapshot) {
-    self.snapshot = snapshot
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
   }
 
   public init(id: GraphQLID, date: String, post: String, user: User, likes: Int, comments: Int) {
-    self.init(snapshot: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.snapshot, "likes": likes, "comments": comments])
+    self.init(unsafeResultMap: ["__typename": "FeedObject", "id": id, "date": date, "post": post, "user": user.resultMap, "likes": likes, "comments": comments])
   }
 
   public var __typename: String {
     get {
-      return snapshot["__typename"]! as! String
+      return resultMap["__typename"]! as! String
     }
     set {
-      snapshot.updateValue(newValue, forKey: "__typename")
+      resultMap.updateValue(newValue, forKey: "__typename")
     }
   }
 
   /// The ID of the object.
   public var id: GraphQLID {
     get {
-      return snapshot["id"]! as! GraphQLID
+      return resultMap["id"]! as! GraphQLID
     }
     set {
-      snapshot.updateValue(newValue, forKey: "id")
+      resultMap.updateValue(newValue, forKey: "id")
     }
   }
 
   public var date: String {
     get {
-      return snapshot["date"]! as! String
+      return resultMap["date"]! as! String
     }
     set {
-      snapshot.updateValue(newValue, forKey: "date")
+      resultMap.updateValue(newValue, forKey: "date")
     }
   }
 
   public var post: String {
     get {
-      return snapshot["post"]! as! String
+      return resultMap["post"]! as! String
     }
     set {
-      snapshot.updateValue(newValue, forKey: "post")
+      resultMap.updateValue(newValue, forKey: "post")
     }
   }
 
   public var user: User {
     get {
-      return User(snapshot: snapshot["user"]! as! Snapshot)
+      return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
     }
     set {
-      snapshot.updateValue(newValue.snapshot, forKey: "user")
+      resultMap.updateValue(newValue.resultMap, forKey: "user")
     }
   }
 
   public var likes: Int {
     get {
-      return snapshot["likes"]! as! Int
+      return resultMap["likes"]! as! Int
     }
     set {
-      snapshot.updateValue(newValue, forKey: "likes")
+      resultMap.updateValue(newValue, forKey: "likes")
     }
   }
 
   public var comments: Int {
     get {
-      return snapshot["comments"]! as! Int
+      return resultMap["comments"]! as! Int
     }
     set {
-      snapshot.updateValue(newValue, forKey: "comments")
+      resultMap.updateValue(newValue, forKey: "comments")
     }
   }
 
@@ -970,41 +982,41 @@ public struct Feed: GraphQLFragment {
       GraphQLField("profile", type: .object(Profile.selections)),
     ]
 
-    public var snapshot: Snapshot
+    public private(set) var resultMap: ResultMap
 
-    public init(snapshot: Snapshot) {
-      self.snapshot = snapshot
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
     }
 
     public init(username: String, profile: Profile? = nil) {
-      self.init(snapshot: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> Snapshot in value.snapshot }])
+      self.init(unsafeResultMap: ["__typename": "UserObject", "username": username, "profile": profile.flatMap { (value: Profile) -> ResultMap in value.resultMap }])
     }
 
     public var __typename: String {
       get {
-        return snapshot["__typename"]! as! String
+        return resultMap["__typename"]! as! String
       }
       set {
-        snapshot.updateValue(newValue, forKey: "__typename")
+        resultMap.updateValue(newValue, forKey: "__typename")
       }
     }
 
     /// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
     public var username: String {
       get {
-        return snapshot["username"]! as! String
+        return resultMap["username"]! as! String
       }
       set {
-        snapshot.updateValue(newValue, forKey: "username")
+        resultMap.updateValue(newValue, forKey: "username")
       }
     }
 
     public var profile: Profile? {
       get {
-        return (snapshot["profile"] as? Snapshot).flatMap { Profile(snapshot: $0) }
+        return (resultMap["profile"] as? ResultMap).flatMap { Profile(unsafeResultMap: $0) }
       }
       set {
-        snapshot.updateValue(newValue?.snapshot, forKey: "profile")
+        resultMap.updateValue(newValue?.resultMap, forKey: "profile")
       }
     }
 
@@ -1016,31 +1028,31 @@ public struct Feed: GraphQLFragment {
         GraphQLField("pictureUrl", type: .scalar(String.self)),
       ]
 
-      public var snapshot: Snapshot
+      public private(set) var resultMap: ResultMap
 
-      public init(snapshot: Snapshot) {
-        self.snapshot = snapshot
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
       }
 
       public init(pictureUrl: String? = nil) {
-        self.init(snapshot: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
+        self.init(unsafeResultMap: ["__typename": "ProfileObject", "pictureUrl": pictureUrl])
       }
 
       public var __typename: String {
         get {
-          return snapshot["__typename"]! as! String
+          return resultMap["__typename"]! as! String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "__typename")
+          resultMap.updateValue(newValue, forKey: "__typename")
         }
       }
 
       public var pictureUrl: String? {
         get {
-          return snapshot["pictureUrl"] as? String
+          return resultMap["pictureUrl"] as? String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "pictureUrl")
+          resultMap.updateValue(newValue, forKey: "pictureUrl")
         }
       }
     }
