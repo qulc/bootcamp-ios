@@ -1,6 +1,6 @@
 language: swift
 
-osx_image: xcode9.3
+osx_image: xcode9.4
 xcode_project: Bootcamp.xcodeproj
 
 cache:
@@ -9,14 +9,13 @@ cache:
     - Carthage
 
 install:
-  - brew update && brew upgrade carthage
   - carthage update --no-use-binaries --cache-builds --platform iOS
   - gem install fir-cli
 
 script:
   - swiftlint
-  - xcodebuild -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
-  - xcodebuild -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' test | xcpretty
+  - xcodebuild -scheme BootcampTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4' test | xcpretty
+  - xcodebuild -scheme BootcampUITests -sdk iphonesimulator build-for-testing -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4' test | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
