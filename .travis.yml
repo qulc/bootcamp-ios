@@ -7,6 +7,7 @@ cache:
   bundler: true
   directories:
     - Carthage
+    - node_modules
 
 install:
   - carthage update --no-use-binaries --cache-builds --platform iOS
