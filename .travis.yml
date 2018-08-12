@@ -9,6 +9,10 @@ cache:
     - Carthage
     - node_modules
 
+before_install:
+  - nvm install 10
+  - nvm alias default 10
+
 install:
   - carthage update --no-use-binaries --cache-builds --platform iOS
   - gem install fir-cli
