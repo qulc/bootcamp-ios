@@ -47,3 +47,7 @@ playground.xcworkspace
 # Package
 Pods/
 Carthage
+
+# Apoll
+node_modules/
+package-lock.json
