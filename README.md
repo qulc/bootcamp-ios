@@ -4,5 +4,5 @@
 [![codecov](https://codecov.io/gh/qulc/bootcamp-ios/branch/master/graph/badge.svg)](https://codecov.io/gh/qulc/bootcamp-ios)
 
 ```
-$ carthage bootstrap
+$ carthage bootstrap --platform iOS
 ```
